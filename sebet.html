@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DoorCafé | Səbət</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f8f1e7;
+    }
+    header {
+      background-color: #5d3a2e;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+    }
+    .cart-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 30px;
+      justify-content: center;
+    }
+    .item-card {
+      background: white;
+      border-radius: 12px;
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .item-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .item-info {
+      padding: 15px;
+    }
+    .item-info h3 {
+      margin: 10px 0 5px;
+    }
+    .item-info p {
+      margin: 4px 0;
+    }
+    .item-info button {
+      margin-top: 10px;
+      background: #c0392b;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .item-info button:hover {
+      background: #a93226;
+    }
+    .summary {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .actions {
+      text-align: center;
+      margin: 20px;
+    }
+    .actions button {
+      background-color: #5d3a2e;
+      color: white;
+      padding: 12px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .actions button:hover {
+      background-color: #7a4d3a;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .modal-content button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="ChatGPT Image 19 апр. 2025 г., 15_10_04 (1).png" alt="DoorCafé" height="40" />
+      <span class="brand-text">DoorCafé</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" >Ana Səhifə</a></li>
+        <li><a href="menu.html" target="_blank">Menyu</a></li>
+        <li><a href="sebet.html" target="_blank">Səbət</a></li>
+        <li><a href="sifaris.html" target="_blank">Sifarişlərim</a></li>
+        <li><a href="qeydiyyat.html" target="_blank">Qeydiyyat</a></li>
+        <li><a href="elaqe.html" target="_blank">Əlaqə</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="cart-container" id="cart-container"></div>
+
+  <div class="summary">Ümumi məbləğ: <span id="total">0.00</span> AZN</div>
+
+  <div class="actions">
+    <button onclick="showPaymentOptions()">Ödəniş et</button>
+    <button onclick="clearCart()">Səbəti təmizlə</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="paymentModal">
+    <div class="modal-content">
+      <h3>Ödəniş üsulunu seçin</h3>
+      <button onclick="pay('Kartla')">Kartla</button>
+      <button onclick="pay('Online')">Kartla</button>
+      <button onclick="pay('Nağd')">Nağd</button>
+      <br><br>
+      <button onclick="closeModal()">Bağla</button>
+    </div>
+  </div>
+
+  <script>
+    function renderCart() {
+      const container = document.getElementById("cart-container");
+      const totalDisplay = document.getElementById("total");
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      let total = 0;
+      container.innerHTML = "";
+
+      cart.forEach((item, index) => {
+        const quantity = parseInt(item.quantity) || 0;
+        const price = parseFloat(item.price) || 0;
+        const image = item.image || "default.jpg";
+        const itemTotal = quantity * price;
+        total += itemTotal;
+
+        container.innerHTML += `
+          <div class="item-card">
+            <img src="${image}" alt="${item.name}">
+            <div class="item-info">
+              <h3>${item.name}</h3>
+              <p>Miqdar: ${quantity}</p>
+              <p>Qiymət: ${itemTotal.toFixed(2)} AZN</p>
+              <button onclick="removeItem(${index})">Sil</button>
+            </div>
+          </div>
+        `;
+      });
+
+      totalDisplay.innerText = total.toFixed(2);
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCart() {
+      localStorage.removeItem("cart");
+      renderCart();
+    }
+
+    function showPaymentOptions() {
+      document.getElementById("paymentModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("paymentModal").style.display = "none";
+    }
+
+    function pay(method) {
+      alert(`Ödəniş ${method} seçildi. Təşəkkür edirik!`);
+      localStorage.removeItem("cart");
+      closeModal();
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>

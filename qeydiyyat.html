@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DoorCafé | Qeydiyyat</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f8f1e7;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .register-form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .register-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .register-form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    .register-form input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .register-form button {
+      width: 100%;
+      background-color: #5d3a2e;
+      color: white;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .register-form button:hover {
+      background-color: #7a4d3a;
+    }
+    #code-section {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <form class="register-form" onsubmit="return handleRegister(event)">
+    <h2>Qeydiyyat</h2>
+
+    <label for="name">Ad və Soyad</label>
+    <input type="text" id="name" required>
+
+    <label for="phone">Telefon nömrəsi</label>
+    <input type="tel" id="phone" placeholder="05XXXXXXXX" required>
+
+    <label for="city">Şəhər</label>
+    <input type="text" id="city" required>
+
+    <label for="street">Küçə</label>
+    <input type="text" id="street" required>
+
+    <label for="house">Ev nömrəsi</label>
+    <input type="text" id="house" required>
+
+    <label for="email">E-mail</label>
+    <input type="email" id="email" required>
+
+    <label for="password">Şifrə</label>
+    <input type="password" id="password" required>
+
+    <button type="submit">Qeydiyyat</button>
+
+    <div id="code-section">
+      <label for="code">Təsdiq kodu</label>
+      <input type="text" id="code" placeholder="123456">
+      <button type="button" onclick="completeRegistration()">Təsdiqlə və Qeydiyyatı Bitir</button>
+    </div>
+  </form>
+
+  <script>
+    function handleRegister(event) {
+      event.preventDefault();
+
+      // Burada backend olmadan kod "göndərilirmiş" kimi davranırıq
+      alert("Təsdiqləmə kodu telefon nömrənizə göndərildi.");
+      document.getElementById("code-section").style.display = "block";
+      return false;
+    }
+
+    function completeRegistration() {
+      const code = document.getElementById("code").value;
+      if (code === "123456") {
+        alert("Qeydiyyat uğurla tamamlandı! Təşəkkür edirik.");
+        window.location.href = "index.html";
+      } else {
+        alert("Yanlış kod. Zəhmət olmasa düzgün kodu daxil edin.");
+      }
+    }
+  </script>
+
+</body>
+</html>

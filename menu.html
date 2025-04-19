@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DoorCafé | Menyu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="ChatGPT Image 19 апр. 2025 г., 15_10_04 (1).png" alt="DoorCafé" />
+      <span class="brand-text">DoorCafé</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" >Ana Səhifə</a></li>
+        <li><a href="menu.html" target="_blank">Menyu</a></li>
+        <li><a href="sebet.html" target="_blank">Səbət</a></li>
+        <li><a href="sifaris.html" target="_blank">Sifarişlərim</a></li>
+        <li><a href="qeydiyyat.html" target="_blank">Qeydiyyat</a></li>
+        <li><a href="elaqe.html" target="_blank">Əlaqə</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="menu-section">
+    <h2>Menyu</h2>
+    <div class="menu-items">
+      <div class="menu-card">
+        <img src="espresso.jpeg" alt="Espresso" />
+        <h3>Espresso</h3>
+        <p>4.00 AZN</p>
+        <button onclick="addToCart('Espresso', 4, 'espresso.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="latte.jpeg" alt="Latte" />
+        <h3>Latte</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Latte', 5, 'latte.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="capuccino.jpeg" alt="Cappuccino" />
+        <h3>Cappuccino</h3>
+        <p>5.50 AZN</p>
+        <button onclick="addToCart('Cappuccino', 5.5, 'capuccino.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="cortado.jpeg" alt="Cortado" />
+        <h3>Cortado</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Cortado', 5, 'cortado.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="frappichina.jpeg" alt="Frappuccino" />
+        <h3>Frappuccino</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Frappuccino', 5, 'frappichina.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="mocha.jpeg" alt="Mocha" />
+        <h3>Mocha</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Mocha', 5, 'mocha.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="Brownies.jpeg" alt="Brownie" />
+        <h3>Brownie</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Brownie', 5, 'Brownies.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="Cheesecake.jpeg" alt="Cheesecake" />
+        <h3>Cheesecake</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Cheesecake', 5, 'Cheesecake.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="karamelt.jpeg" alt="Caramel cake" />
+        <h3>Caramel cake</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Caramel cake', 5, 'karamelt.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="kuki.jpeg" alt="Cookies" />
+        <h3>Cookies</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Cookies', 5, 'kuki.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="Lime Cheesecake.jpeg" alt="Lime Cheesecake" />
+        <h3>Lime Cheesecake</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Lime Cheesecake', 5, 'Lime Cheesecake.jpeg')">Səbətə əlavə et</button>
+      </div>
+
+      <div class="menu-card">
+        <img src="skalad tort.jpeg" alt="Chocolate cake" />
+        <h3>Chocolate cake</h3>
+        <p>5.00 AZN</p>
+        <button onclick="addToCart('Chocolate cake', 5, 'skalad tort.jpeg')">Səbətə əlavə et</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function addToCart(name, price, image) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const exist = cart.find(item => item.name === name);
+      if (exist) {
+        exist.quantity += 1;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          quantity: 1,
+          image: image
+        });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${name} səbətə əlavə olundu!`);
+    }
+  </script>
+
+  <footer>
+    <p>&copy; 2025 DoorCafé</p>
+  </footer>
+</body>
+</html>
+
+

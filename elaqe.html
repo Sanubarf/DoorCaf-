@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <title>Əlaqə | DoorCafé</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f8f0e3;
+    }
+
+    header {
+      background-color: #5c352e;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      color: #5c352e;
+      margin-top: 40px;
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .contact-form button {
+      background-color: #5c352e;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #42241d;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html"><img src="ChatGPT Image 19 апр. 2025 г., 15_10_04 (1).png" alt="DoorCafé Logo"></a>
+    <nav>
+      <a href="index.html">Ana Səhifə</a>
+      <a href="menu.html">Menyu</a>
+      <a href="sebet.html">Səbət</a>
+      <a href="elaqe.html">Əlaqə</a>
+    </nav>
+  </header>
+
+  <h1>Bizimlə əlaqə saxlayın</h1>
+
+  <div class="contact-form">
+    <form action="#" method="post">
+      <label>Ad:</label>
+      <input type="text" name="name" placeholder="Adınızı daxil edin" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" placeholder="Email ünvanınızı daxil edin" required>
+
+      <label>Mesaj:</label>
+      <textarea name="message" rows="5" placeholder="Mesajınızı buraya yazın..." required></textarea>
+
+      <button type="submit">Göndər</button>
+    </form>
+  </div>
+
+</body>
+</html>
